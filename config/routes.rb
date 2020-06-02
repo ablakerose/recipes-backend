@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
-  resources :recipes
-  resources :users
+  namespace :api do
+    namespace :v1 do 
+      resources :recipes
+        end
+      end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :api do
-    namespace :v1 do
+    namespace :v1 do  
+      resources :users
         end
   end
 end
