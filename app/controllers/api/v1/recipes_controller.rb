@@ -4,16 +4,19 @@ class Api::V1::RecipesController < ApplicationController
         render json: recipes, status: 200
     end
 
+    def create
+        recipe = Recipe.new(recipe_params)
+            if recipe.save
+                render json: recipe, status: 200
+            else 
+                render json: {error: 'Error creating recipe'}
+            end
+    end
+
     def show
         recipe = Recipe.find(params[:id])
         render json: recipe, status: 200
-
-    end
-
-    def create
-        recipe = Recipe.find(recipe_params)
-        render json: recipe, status: 200
-    end
+    end 
 
     def update
         recipe = Recipe.find(params[:id])
